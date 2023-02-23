@@ -12,6 +12,14 @@ class BlocExample extends StatelessWidget {
         title: const Text(''),
       ),
       body: BlocListener<ExampleBloc, ExampleState>(
+        listenWhen: (previous, current) {
+          if (previous is ExampleStateInitial && current is ExampleStateData) {
+            if (current.names.length > 3) {
+              return true;
+            }
+          }
+          return false;
+        },
         listener: (context, state) {
           if (state is ExampleStateData) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -44,6 +52,14 @@ class BlocExample extends StatelessWidget {
               },
             ),
             BlocConsumer<ExampleBloc, ExampleState>(
+              buildWhen: (previous, current) {
+                if (previous is ExampleStateInitial && current is ExampleStateData) {
+                  if (current.names.length > 3) {
+                    return true;
+                  }
+                }
+                return false;
+              },
               listener: (context, state) {
                 if (state is ExampleStateData) {
                   print('estado alterado para: ${state.runtimeType}');
