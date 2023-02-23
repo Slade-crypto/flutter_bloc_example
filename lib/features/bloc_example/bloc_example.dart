@@ -87,6 +87,9 @@ class BlocExample extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final name = names[index];
                       return ListTile(
+                        onTap: () {
+                          context.read<ExampleBloc>().add(ExampleRemoveNameEvent(name: name));
+                        },
                         title: Text(name),
                       );
                     },
@@ -112,6 +115,10 @@ class BlocExample extends StatelessWidget {
             //     return const Text('nenhum nome cadastrado');
             //   },
             // ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Adicionar'),
+            ),
           ],
         ),
       ),
