@@ -13,7 +13,8 @@ class ExampleBloc extends Bloc<ExampleEvent, ExampleState> {
     on<ExampleAddNameEvent>(_addName);
   }
 
-  FutureOr<void> _removeName(ExampleRemoveNameEvent event, Emitter<ExampleState> emit) {
+  FutureOr<void> _removeName(
+      ExampleRemoveNameEvent event, Emitter<ExampleState> emit) {
     final exampleState = state;
 
     if (exampleState is ExampleStateData) {
@@ -23,14 +24,20 @@ class ExampleBloc extends Bloc<ExampleEvent, ExampleState> {
     }
   }
 
-  FutureOr<void> _addName(ExampleAddNameEvent event, Emitter<ExampleState> emit) {
+  FutureOr<void> _addName(
+      ExampleAddNameEvent event, Emitter<ExampleState> emit) {
     final exampleState = state;
     if (exampleState is ExampleStateData) {
-      final name = 'Pão';
+      const name = 'Pão';
+      final names = exampleState.names;
+
+      names.add(name);
+      emit(ExampleStateData(names: names));
     }
   }
 
-  FutureOr<void> _findNames(ExampleFindNameEvent event, Emitter<ExampleState> emit) async {
+  FutureOr<void> _findNames(
+      ExampleFindNameEvent event, Emitter<ExampleState> emit) async {
     final names = [
       'Renan',
       'Academia do flutter',

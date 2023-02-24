@@ -53,7 +53,8 @@ class BlocExample extends StatelessWidget {
             ),
             BlocConsumer<ExampleBloc, ExampleState>(
               buildWhen: (previous, current) {
-                if (previous is ExampleStateInitial && current is ExampleStateData) {
+                if (previous is ExampleStateInitial &&
+                    current is ExampleStateData) {
                   if (current.names.length > 3) {
                     return true;
                   }
@@ -61,9 +62,7 @@ class BlocExample extends StatelessWidget {
                 return false;
               },
               listener: (context, state) {
-                if (state is ExampleStateData) {
-                  print('estado alterado para: ${state.runtimeType}');
-                }
+                if (state is ExampleStateData) {}
               },
               builder: (context, state) {
                 if (state is ExampleStateData) {
@@ -88,7 +87,12 @@ class BlocExample extends StatelessWidget {
                       final name = names[index];
                       return ListTile(
                         onTap: () {
-                          context.read<ExampleBloc>().add(ExampleRemoveNameEvent(name: name));
+                          context
+                              .read<ExampleBloc>()
+                              .add(ExampleRemoveNameEvent(name: name));
+                          context
+                              .read<ExampleBloc>()
+                              .add(ExampleAddNameEvent(name: name));
                         },
                         title: Text(name),
                       );
@@ -117,7 +121,7 @@ class BlocExample extends StatelessWidget {
             // ),
             ElevatedButton(
               onPressed: () {},
-              child: Text('Adicionar'),
+              child: const Text('Adicionar'),
             ),
           ],
         ),
