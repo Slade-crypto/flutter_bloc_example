@@ -22,6 +22,16 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/freezed');
+              },
+              child: Text(
+                'Freezed Example',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
           ],
         ),
       ),
