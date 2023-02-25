@@ -26,19 +26,21 @@ class ExampleFreezedBloc extends Bloc<ExampleFreezedEvent, ExampleFreezedState> 
     emit(ExampleFreezedState.data(names: newNames));
   }
 
-  FutureOr<void> _addName(_ExampleAddNameEvent event, Emitter<ExampleFreezedState> emit) {
+  FutureOr<void> _addName(_ExampleAddNameEvent event, Emitter<ExampleFreezedState> emit) async {
     final names = state.maybeWhen(
       data: (names) => names,
       orElse: () => const <String>[],
     );
 
     emit(ExampleFreezedState.showBanner(names: names, message: 'Aguarde, nome sendo inserido...'));
-    Future.delayed(const Duration(seconds: 2));
+
+    await Future.delayed(const Duration(seconds: 2));
 
     final newNames = [...names];
 
     newNames.add(event.name);
-    emit(ExampleFreezedState.data(names: names));
+
+    emit(ExampleFreezedState.data(names: newNames));
   }
 
   FutureOr<void> _findNames(_ExampleFindNameEvent event, Emitter<ExampleFreezedState> emit) async {
