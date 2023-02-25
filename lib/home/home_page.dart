@@ -32,6 +32,15 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/contact');
+              },
+              child: Text(
+                'Freezed Example',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
           ],
         ),
       ),
