@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-class Contact {
+class Contacts {
   final String? id;
   final String name;
   final String email;
 
-  Contact(
+  Contacts(
     this.id,
     this.name,
     this.email,
@@ -19,8 +19,8 @@ class Contact {
     };
   }
 
-  factory Contact.fromMap(Map<String, dynamic> map) {
-    return Contact(
+  factory Contacts.fromMap(Map<String, dynamic> map) {
+    return Contacts(
       map["id"] ?? '',
       map["name"] ?? '',
       map["email"] ?? '',
@@ -29,5 +29,5 @@ class Contact {
 
   String toJson() => jsonEncode(toMap());
 
-  factory Contact.fromJson(String json) => Contact.fromMap(jsonDecode(json));
+  factory Contacts.fromJson(String json) => Contacts.fromMap(jsonDecode(json));
 }
