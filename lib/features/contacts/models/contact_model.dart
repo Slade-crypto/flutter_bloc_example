@@ -5,11 +5,11 @@ class Contacts {
   final String name;
   final String email;
 
-  Contacts(
+  Contacts({
     this.id,
-    this.name,
-    this.email,
-  );
+    required this.name,
+    required this.email,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -21,9 +21,9 @@ class Contacts {
 
   factory Contacts.fromMap(Map<String, dynamic> map) {
     return Contacts(
-      map["id"] ?? '',
-      map["name"] ?? '',
-      map["email"] ?? '',
+      id: map["id"],
+      name: map["name"] ?? '',
+      email: map["email"] ?? '',
     );
   }
 

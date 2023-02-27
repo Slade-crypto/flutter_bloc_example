@@ -9,6 +9,8 @@ import 'features/bloc_example/bloc_example.dart';
 import 'features/bloc_example/bloc_example_freezed.dart';
 import 'features/contacts/bloc/contact_list_bloc.dart';
 import 'features/contacts/list/contacts_list_page.dart';
+import 'features/contacts/register/contact_register_page.dart';
+import 'features/contacts/update/contact_update_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +46,11 @@ class MyApp extends StatelessWidget {
                   ),
                 child: const ContactsListPage(),
               ),
+          'contact/register': (context) => BlocProvider(
+                create: (context) => ContactListBloc(repository: context.read<ContactRepository>()),
+                child: const ContactRegisterPage(),
+              ),
+          'contact/update': (context) => const ContactUpdatePage(),
         },
       ),
     );
